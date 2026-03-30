@@ -9,6 +9,16 @@ public sealed class NotletApplication(ILogger<NotletApplication> logger) : INotl
     {
         try
         {
+            if (args.Any(string.IsNullOrWhiteSpace))
+            {
+                throw new ArgumentException("Arguments cannot be empty.");
+            }
+
+            if (args.Contains("--bad-format", StringComparer.Ordinal))
+            {
+                throw new FormatException("Invalid argument format.");
+            }
+
             logger.LogInformation("Notlet started");
             Console.WriteLine("Notlet initialized");
             return Task.FromResult((int)AppExitCode.Success);
