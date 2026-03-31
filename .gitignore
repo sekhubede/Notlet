@@ -1,0 +1,28 @@
+# User-specific files
+*.userosscache
+*.ruser
+
+# Build output
+bin/
+obj/
+out/
+
+# Test and coverage output
+TestResults/
+*.trx
+coverage/
+coverage.*
+
+# User/IDE files
+.vs/
+.vscode/
+.idea/
+*.user
+*.suo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
