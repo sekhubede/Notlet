@@ -18,6 +18,7 @@ For v1, Notlet will use a **single .NET 8 console application** with:
 - Friendly error handling for user-facing failures
 - Standardized application exit codes
 - xUnit tests for startup and validation/failure paths
+- Storage abstraction (`INoteStore`) with local JSON implementation for v1
 
 The project remains structured to support future extraction of an API layer without major disruption.
 
@@ -46,6 +47,6 @@ The project remains structured to support future extraction of an API layer with
 
 ## Follow-up
 
-- Revisit this ADR when Notes CRUD + storage are stable.
+- Revisit API extraction once Notes feature slices are stable and storage behaviors are validated.
 - Evaluate adding `Notlet.Api` in a later milestone.
 - Define migration plan for storage abstraction when API/cloud support is introduced.

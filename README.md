@@ -1,6 +1,6 @@
 # Notlet
 
-Notlet is a .NET 8 console note-taking app used to demonstrate a disciplined GitHub workflow and coding standards. The current version is MVP bootstrap-focused: app shell, logging, friendly error handling, and test baseline.
+Notlet is a .NET 8 console note-taking app used to demonstrate a disciplined GitHub workflow and coding standards. The current version includes MVP bootstrap foundations plus local JSON note storage with tested persistence behavior.
 
 ## Purpose
 
@@ -17,12 +17,24 @@ Notlet is a .NET 8 console note-taking app used to demonstrate a disciplined Git
 - **Error handling:** Friendly user messages + structured technical logs
 - **Exit codes:** Standardized application exit codes via `AppExitCode`
 
+## Storage (v1)
+
+- **Abstraction:** `INoteStore`
+- **Implementation:** `JsonNoteStore`
+- **Provider config:** `Notlet:Storage:Provider` (currently `Json`)
+- **File path config:** `Notlet:Storage:FilePath` (default `data/notes.json`)
+- Missing storage file is treated as an empty note set.
+- Storage read/write failures are logged and surfaced to global error handling.
+
 ## Project Structure
 
 - `Notlet.sln`
 - `src/Notlet.App` - Console app
 - `tests/Notlet.App.Tests` - xUnit tests
 - `docs/adr` - Architecture decision records
+- `src/Notlet.App/Abstractions` - Contracts (e.g., `INoteStore`)
+- `src/Notlet.App/Domain` - Domain models (e.g., `Note`)
+- `src/Notlet.App/Infrastructure/Storage` - JSON storage implementation/options
 
 ## Run the App
 

@@ -32,6 +32,10 @@ Use standardized exit codes via `AppExitCode`:
 - `ValidationOrUsageError = 2`
 - `Cancelled = 3`
 
+### Storage Error Boundary
+
+`JsonNoteStore` logs storage failures and rethrows unexpected exceptions so they are handled by the global application error boundary (`Program`), preserving a consistent user-facing error policy.
+
 ## Consequences
 
 ### Positive
@@ -62,3 +66,4 @@ Use standardized exit codes via `AppExitCode`:
 - Review and refine expected failure categories as features are added.
 - Add tests for global catch behavior when practical.
 - Consider documenting user-facing error message guidelines in coding standards.
+- Expand tests for storage failure paths and cancellation behavior.
