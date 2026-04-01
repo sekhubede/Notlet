@@ -3,6 +3,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Notlet.App.Abstractions;
 using Notlet.App.CompositionRoot;
+using Notlet.App.Infrastructure.Storage;
 
 using var loggerFactory = LoggerFactory.Create(b =>
 {
@@ -18,9 +19,13 @@ try
             logging.ClearProviders();
             logging.AddConsole();
         })
-        .ConfigureServices(services =>
+        .ConfigureServices((context, services) =>
         {
+            services.Configure<NotletStorageOptions>(
+                context.Configuration.GetSection(NotletStorageOptions.SectionName));
+
             services.AddSingleton<INotletApplication, NotletApplication>();
+            services.AddSingleton<INoteStore, JsonNoteStore>();
         })
         .Build();
 
